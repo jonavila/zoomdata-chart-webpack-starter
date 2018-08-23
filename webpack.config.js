@@ -18,7 +18,7 @@ const commonConfig = merge([
   },
   parts.loadJavaScript({ include: PATHS.app }),
   parts.extractCSS({
-    use: ['css-loader', parts.autoprefix()],
+    use: ['css-loader', parts.autoprefix(), 'sass-loader'],
   }),
 ]);
 
@@ -40,10 +40,10 @@ const productionConfig = merge([
     options: {
       discardComments: {
         removeAll: true,
-        // Run cssnano in safe mode to avoid
-        // potentially unsafe transformations.
-        safe: true,
       },
+      // Run cssnano in safe mode to avoid
+      // potentially unsafe transformations.
+      parser: require('postcss-safe-parser'),
     },
   }),
 ]);

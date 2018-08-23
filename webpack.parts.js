@@ -23,6 +23,13 @@ exports.extractCSS = ({ include, exclude, use }) => {
             ...use
           ],
         },
+        {
+          test: /\.scss$/,
+          include,
+          exclude,
+
+          use: [MiniCssExtractPlugin.loader].concat(use),
+        },
       ],
     },
     plugins: [plugin],

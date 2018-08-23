@@ -5,7 +5,10 @@
       {
         "modules": false,
         "targets": {
-          "browsers": ["defaults"]
+          "browsers": [
+            ">0.25%",
+            "not op_mini all"
+          ]
         }
       }
     ]
