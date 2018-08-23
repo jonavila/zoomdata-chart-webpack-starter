@@ -5,47 +5,47 @@ const merge = require('webpack-merge');
 const parts = require('./webpack.parts');
 
 const PATHS = {
-	app: path.join(__dirname, 'src'),
-	build: path.join(__dirname, 'components'),
+  app: path.join(__dirname, 'src'),
+  build: path.join(__dirname, 'components'),
 };
 
 const commonConfig = merge([
-	{
-		output: {
-			path: PATHS.build,
-			filename: 'Visualization.js',
-		},
-	},
-	parts.loadJavaScript({ include: PATHS.app }),
+  {
+    output: {
+      path: PATHS.build,
+      filename: 'Visualization.js',
+    },
+  },
+  parts.loadJavaScript({ include: PATHS.app }),
   parts.extractCSS({
-    use: ['css-loader', parts.autoprefix()],
+    use: ['css-loader', parts.autoprefix(), 'sass-loader'],
   }),
 ]);
 
 const productionConfig = merge([
-	{
-		performance: {
-			hints: 'warning', // 'error' or false are valid too
-			maxEntrypointSize: 100000, // in bytes
-			maxAssetSize: 450000, // in bytes
-		},
-		output: {
-			chunkFilename: 'Visualization.js',
-			filename: 'Visualization.js',
-		},
-	},
-	parts.clean(PATHS.build),
-	parts.minifyJavaScript(),
-	parts.minifyCSS({
-		options: {
-			discardComments: {
-				removeAll: true,
-				// Run cssnano in safe mode to avoid
-				// potentially unsafe transformations.
-				safe: true,
-			},
-		},
-	}),
+  {
+    performance: {
+      hints: 'warning', // 'error' or false are valid too
+      maxEntrypointSize: 100000, // in bytes
+      maxAssetSize: 450000, // in bytes
+    },
+    output: {
+      chunkFilename: 'Visualization.js',
+      filename: 'Visualization.js',
+    },
+  },
+  parts.clean(PATHS.build),
+  parts.minifyJavaScript(),
+  parts.minifyCSS({
+    options: {
+      discardComments: {
+        removeAll: true,
+      },
+      // Run cssnano in safe mode to avoid
+      // potentially unsafe transformations.
+      parser: require('postcss-safe-parser'),
+    },
+  }),
 ]);
 
 const developmentConfig = merge([
@@ -60,14 +60,14 @@ const developmentConfig = merge([
 ]);
 
 module.exports = mode => {
-	const pages = [
-		parts.page({
-			entry: {
-				app: PATHS.app + '/--chartname--',
-			},
-		}),
-	];
-	const config = mode === 'production' ? productionConfig : developmentConfig;
+  const pages = [
+    parts.page({
+      entry: {
+        app: PATHS.app + '/--chartname--',
+      },
+    }),
+  ];
+  const config = mode === 'production' ? productionConfig : developmentConfig;
 
   return merge([commonConfig, config, { mode }].concat(pages));
 };
