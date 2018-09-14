@@ -16,8 +16,7 @@
   "scripts": {
     "precommit": "lint-staged",
     "build": "webpack --env production",
-    "start": "webpack --env development",
-    "postinstall": "node tools/init.js"
+    "start": "webpack --env development"
   },
   "lint-staged": {
     "src/**/*.{js,css}": [
@@ -26,12 +25,12 @@
     ]
   },
   "devDependencies": {
-    "autoprefixer": "^9.1.3",
-    "babel-core": "^6.26.3",
-    "babel-loader": "^7.1.5",
-    "babel-plugin-transform-class-properties": "^6.24.1",
-    "babel-plugin-transform-object-rest-spread": "^6.26.0",
-    "babel-preset-env": "^1.7.0",
+    "@babel/core": "^7.0.0",
+    "@babel/plugin-proposal-class-properties": "^7.0.0",
+    "@babel/plugin-proposal-object-rest-spread": "^7.0.0",
+    "@babel/preset-env": "^7.0.0",
+    "autoprefixer": "^9.1.5",
+    "babel-loader": "^8.0.2",
     "clean-webpack-plugin": "^0.1.19",
     "colors": "^1.3.2",
     "css-loader": "^1.0.0",
@@ -41,7 +40,7 @@
     "lodash.omit": "^4.5.0",
     "mini-css-extract-plugin": "^0.4.2",
     "node-sass": "^4.9.3",
-    "optimize-css-assets-webpack-plugin": "^5.0.0",
+    "optimize-css-assets-webpack-plugin": "^5.0.1",
     "postcss-loader": "^3.0.0",
     "postcss-safe-parser": "^4.0.1",
     "prettier": "^1.14.2",
@@ -50,10 +49,10 @@
     "rimraf": "^2.6.1",
     "sass-loader": "^7.1.0",
     "shelljs": "^0.8.2",
-    "style-loader": "^0.22.1",
+    "style-loader": "^0.23.0",
     "uglifyjs-webpack-plugin": "^1.3.0",
     "url-loader": "^1.1.1",
-    "webpack": "^4.17.1",
+    "webpack": "^4.19.0",
     "webpack-cli": "^3.1.0",
     "webpack-merge": "^4.1.4"
   },
