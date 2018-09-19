@@ -16,7 +16,8 @@
   "scripts": {
     "precommit": "lint-staged",
     "build": "cross-env NODE_ENV=development webpack --env production",
-    "start": "cross-env NODE_ENV=production webpack --env development"
+    "start": "cross-env NODE_ENV=production webpack --env development",
+    "postinstall": "node tools/init.js"
   },
   "lint-staged": {
     "src/**/*.{js,css}": [
