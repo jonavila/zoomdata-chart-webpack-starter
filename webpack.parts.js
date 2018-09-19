@@ -46,6 +46,7 @@ exports.autoprefix = () => ({
 exports.loadJavaScript = ({ include, exclude }) => ({
   module: {
     rules: [
+      { parser: { amd: false } },
       {
         test: /\.js$/,
         include,
