@@ -4,35 +4,19 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const UglifyWebpackPlugin = require('uglifyjs-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
-exports.extractCSS = ({ include, exclude, use }) => {
-  // Output extracted CSS to a file
-  const plugin = new MiniCssExtractPlugin({
-    filename: 'style.css',
-  });
-
+exports.loadCSS = ({ include, exclude, use }) => {
   return {
     module: {
       rules: [
         {
-          test: /\.css$/,
+          test: /\.(s*)css$/,
           include,
           exclude,
 
-          use: [
-            MiniCssExtractPlugin.loader,
-            ...use
-          ],
-        },
-        {
-          test: /\.scss$/,
-          include,
-          exclude,
-
-          use: [MiniCssExtractPlugin.loader].concat(use),
+          use,
         },
       ],
     },
-    plugins: [plugin],
   };
 };
 
@@ -40,6 +24,22 @@ exports.autoprefix = () => ({
   loader: 'postcss-loader',
   options: {
     plugins: () => [require('autoprefixer')()],
+  },
+});
+
+exports.loadImages = ({ include, exclude, options } = {}) => ({
+  module: {
+    rules: [
+      {
+        test: /\.(png|jpg|svg)$/,
+        include,
+        exclude,
+        use: {
+          loader: 'url-loader',
+          options,
+        },
+      },
+    ],
   },
 });
 

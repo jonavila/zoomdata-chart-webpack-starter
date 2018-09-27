@@ -6,19 +6,19 @@ const parts = require('./webpack.parts');
 
 const PATHS = {
   app: path.join(__dirname, 'src'),
-  build: path.join(__dirname, 'components'),
+  build: path.join(__dirname, 'dist'),
 };
 
 const commonConfig = merge([
   {
     output: {
       path: PATHS.build,
-      filename: 'Visualization.js',
+      filename: 'visualization.js',
     },
   },
   parts.loadJavaScript({ include: PATHS.app }),
-  parts.extractCSS({
-    use: ['css-loader', parts.autoprefix(), 'sass-loader'],
+  parts.loadCSS({
+    use: ['style-loader', 'css-loader', parts.autoprefix(), 'sass-loader'],
   }),
 ]);
 
