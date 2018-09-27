@@ -31,8 +31,8 @@ const productionConfig = merge([
       maxAssetSize: 450000, // in bytes
     },
     output: {
-      chunkFilename: 'Visualization.js',
-      filename: 'Visualization.js',
+      chunkFilename: 'visualization.js',
+      filename: 'visualization.js',
     },
   },
   parts.clean(PATHS.build),
