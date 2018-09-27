@@ -20,6 +20,7 @@ const commonConfig = merge([
   parts.loadCSS({
     use: ['style-loader', 'css-loader', parts.autoprefix(), 'sass-loader'],
   }),
+  parts.copyFilesToBuildDir(),
 ]);
 
 const productionConfig = merge([
@@ -63,7 +64,7 @@ module.exports = mode => {
   const pages = [
     parts.page({
       entry: {
-        app: PATHS.app + '/index',
+        app: PATHS.app + '/--chartname--',
       },
     }),
   ];

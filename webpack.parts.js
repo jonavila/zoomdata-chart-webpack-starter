@@ -2,6 +2,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const webpack = require('webpack');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const UglifyWebpackPlugin = require('uglifyjs-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 exports.loadCSS = ({ include, exclude, use }) => {
@@ -85,6 +86,10 @@ exports.minifyCSS = ({ options }) => ({
       }),
     ],
   },
+});
+
+exports.copyFilesToBuildDir = () => ({
+  plugins: [new CopyWebpackPlugin(['visualization.json'])],
 });
 
 exports.setFreeVariable = (key, value) => {
