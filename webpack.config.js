@@ -63,7 +63,7 @@ module.exports = mode => {
   const pages = [
     parts.page({
       entry: {
-        app: PATHS.app + '/--chartname--',
+        app: PATHS.app + '/index',
       },
     }),
   ];
