@@ -1,9 +1,7 @@
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const webpack = require('webpack');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const UglifyWebpackPlugin = require('uglifyjs-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 exports.loadCSS = ({ include, exclude, use }) => {
   return {
@@ -74,17 +72,6 @@ exports.clean = path => ({
 exports.minifyJavaScript = () => ({
   optimization: {
     minimizer: [new UglifyWebpackPlugin({ sourceMap: false })],
-  },
-});
-
-exports.minifyCSS = ({ options }) => ({
-  optimization: {
-    minimizer: [
-      new OptimizeCSSAssetsPlugin({
-        cssProcessorOptions: options,
-        canPrint: false,
-      }),
-    ],
   },
 });
 
